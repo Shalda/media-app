@@ -1,12 +1,11 @@
 <ul class="nav flex-column">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">Active</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
+  <li class="nav-item mb-3" *ngFor="let category of getCategories()| keyvalue">
+    <a
+      class="text-capitalize"
+      aria-current="page"
+      routerLinkActive="active-link"
+      [routerLink]="['category', category.key]"
+    >{{category.key}} [{{category.value}}]</a>
   </li>
   <li class="nav-item">
     <button type="button" class="btn btn-outline-secondary" (click)="changeView()">{{cardsView}}</button>

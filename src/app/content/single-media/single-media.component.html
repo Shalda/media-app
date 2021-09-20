@@ -1,0 +1,6 @@
+<button type="button" class="btn btn-outline-secondary previous mb-3" (click)="back()">&laquo; Previous</button>
+<div class="media_card" *ngIf="media">
+  <p>Title: {{media.Title}}</p>
+  <p>Type: {{media.Type}}</p>
+  <p>Year: {{media.Year | date: 'YYYY'}}</p>
+</div>

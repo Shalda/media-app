@@ -3,6 +3,7 @@ import {IMedia} from "../../model/media.model";
 import {MediaRepositoryService} from "../../model/media.repository.service";
 import {Subscription} from "rxjs";
 import {ChangeCardsViewService} from "../../common/services/change-cards-view.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-list-media',
@@ -12,28 +13,52 @@ import {ChangeCardsViewService} from "../../common/services/change-cards-view.se
 export class ListMediaComponent implements OnInit, OnDestroy {
   public mediaContent: IMedia[] = [];
   public cardViewChanger: string = "list";
-  public mediaSubscription: Subscription;
   public cardViewSubscription: Subscription;
+  public routeSubscription: Subscription;
+  public category: string;
+  public sortSelector: boolean = false;
+  public searchText: string  = '';
 
   constructor(
     private _mediaRepository: MediaRepositoryService,
-    private _cardViewService: ChangeCardsViewService) {
+    private _cardViewService: ChangeCardsViewService,
+    private _route: ActivatedRoute,
+  ) {
   }
-  public getClassMap(){
+
+  public changeSortSelector(sortValue: boolean) {
+    this.sortSelector = sortValue;
+  }
+
+  public get media() {
+    if (this.category === undefined) {
+      this.mediaContent = this._mediaRepository.getMedia();
+    } else {
+      this.mediaContent = this._mediaRepository.getMediasByCategory(this.category);
+    }
+    return this.mediaContent;
+  }
+
+  public getClassMap() {
     return {
       "row-cols-sm-2 row-cols-md-3 row-cols-lg-4": this.cardViewChanger == "list"
     };
   }
 
   ngOnInit(): void {
-    this.mediaSubscription = this._mediaRepository.getMediaListener()
-      .subscribe(data => this.mediaContent = data);
+    this.routeSubscription = this._route.params.subscribe(param => {
+        if (param.name && param.name !== this.category) {
+          this.category = param.name;
+          this.media;
+        }
+      }
+    )
     this.cardViewSubscription = this._cardViewService.getCardsViewListener()
       .subscribe(view => this.cardViewChanger = view, error => console.log(error));
   }
 
   ngOnDestroy() {
-    this.mediaSubscription.unsubscribe();
     this.cardViewSubscription.unsubscribe();
+    this.routeSubscription.unsubscribe();
   }
 }

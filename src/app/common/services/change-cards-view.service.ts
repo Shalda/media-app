@@ -5,7 +5,7 @@ import {BehaviorSubject, Subject} from "rxjs";
   providedIn: 'root'
 })
 export class ChangeCardsViewService {
-private view = new BehaviorSubject<string>('list')
+private view = new BehaviorSubject<string>('grid')
   constructor() { }
   changView(){
   const value: string =  this.view.getValue()

@@ -9,7 +9,6 @@ import {RestDataSourceService} from "../model/rest.datasource.service";
 export class ContentComponent implements OnInit {
 
   constructor() { }
-
   ngOnInit(): void {
 
   }
