@@ -1,3 +1,4 @@
-<div class="container pt-3 pb-3">
+<div class="container pt-3 pb-3 m-auto">
   <router-outlet></router-outlet>
 </div>
+<app-error-message [errorMsg]='error' *ngIf="error"></app-error-message>

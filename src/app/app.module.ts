@@ -1,20 +1,23 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from "@angular/common/http";
-import {ImageDirective} from './common/directives/image.directive';
+import {ImageDirective} from './directives/image.directive';
 import {RouterModule} from "@angular/router";
 import {routes} from "./routes";
 
 import {AppComponent} from './app.component';
-import {CardComponent} from './content/list-media/card/card.component';
-import {ContentComponent} from './content/content.component';
-import {NavigationComponent} from './content/navigation/navigation.component';
-import {ControlsComponent} from './content/list-media/controls/controls.component';
-import {SingleMediaComponent} from './content/single-media/single-media.component';
-import {ListMediaComponent} from './content/list-media/list-media.component';
-import { SortByCharPipe } from './common/pipes/sort-by-char.pipe';
-import { FilterMediaPipe } from './common/pipes/filter-media.pipe';
+import {CardComponent} from './components/list-media/card/card.component';
+import {ContentComponent} from './components/content.component';
+import {NavigationComponent} from './components/navigation/navigation.component';
+import {ControlsComponent} from './components/list-media/controls/controls.component';
+import {SingleMediaComponent} from './components/single-media/single-media.component';
+import {ListMediaComponent} from './components/list-media/list-media.component';
+import { SortByCharPipe } from './pipes/sort-by-char.pipe';
+import { FilterMediaPipe } from './pipes/filter-media.pipe';
 import {FormsModule} from "@angular/forms";
+import { ErrorMessageComponent } from './components/share/error-message/error-message.component';
+import { LoaderComponent } from './components/share/loader/loader.component';
+import {DragDropModule} from "@angular/cdk/drag-drop";
 
 
 @NgModule({
@@ -28,7 +31,9 @@ import {FormsModule} from "@angular/forms";
     ListMediaComponent,
     ImageDirective,
     SortByCharPipe,
-    FilterMediaPipe
+    FilterMediaPipe,
+    ErrorMessageComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +41,7 @@ import {FormsModule} from "@angular/forms";
     RouterModule,
     RouterModule.forRoot(routes),
     FormsModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

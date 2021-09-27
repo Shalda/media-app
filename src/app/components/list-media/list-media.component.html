@@ -1,0 +1,9 @@
+<app-controls (newSortSelectorEvent)="changeSortSelector($event)" (newSearchEvent)="searchText = $event"></app-controls>
+<div class="cards_container row row-cols-1 g-3" [ngClass]="getClassMap()" >
+  <app-card *ngFor="let mediaItem of media| filterMedia:searchText | sortByChar:sortSelector"
+            [media]="mediaItem"
+            [cardView]="cardViewChanger"
+  >
+  </app-card>
+</div>
+

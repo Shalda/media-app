@@ -1,0 +1,16 @@
+.card {
+height: 100%;
+}
+
+.card-img-top {
+  cursor: pointer;
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 580px) {
+  .card-img-top {
+    height: 100%;
+  }
+}

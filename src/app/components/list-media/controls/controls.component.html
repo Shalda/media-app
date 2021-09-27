@@ -1,0 +1,14 @@
+<div class="controls d-flex flex-column flex-md-row  gap-2 mb-3">
+  <form class="col-md-4 col-12">
+    <input [(ngModel)]="searchText" (input)="searchTextChange()" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+  </form>
+  <div class="col-md-9 col-12 gap-3 d-flex " >
+    <button type="button" class="btn btn-outline-secondary" (click)="searchText = ''; searchTextChange()">clear</button>
+    <button type="button" class="btn btn-outline-secondary"
+            (click)="refreshData()"
+            [routerLink]="'/'">refresh
+    </button>
+    <button type="button" class="btn btn-outline-secondary" (click)="sortChange()">sort</button>
+  </div>
+</div>
+

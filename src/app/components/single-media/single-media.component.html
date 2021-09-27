@@ -1,0 +1,33 @@
+<button type="button" class="btn btn-outline-secondary previous mb-3" (click)="back()">&laquo; Previous</button>
+<div class="d-flex  flex-row gap-3">
+  <div class="card-img_container col-3">
+    <img class="card-img-top img-fluid"
+         [src]="media?.Poster"
+         [alt]="media?.Title + ' image'"
+         (error)="img.src = '/assets/img/placeholder.png'" #img>
+  </div>
+  <div class="media_card col-9" *ngIf="media">
+    <p *ngIf="!editMode; else inputBox" (click)="editModeSwitcher()">Title: {{media?.Title}}</p>
+    <ng-template #inputBox>
+      <form #titleForm="ngForm">
+        <input type="text" required
+               [ngModel]="media.Title" name="title"
+               #title="ngModel"
+               (keyup.enter)="submitForm(titleForm)"
+               (blur)="submitForm(titleForm)">
+        <div
+          class="p-1 mt-1 alert alert-danger"
+          [hidden]="!sameTitle || title.valid || title.pristine">
+          Title is required!
+        </div>
+        <div
+          class="p-1 mt-1 alert alert-danger"
+          [hidden]="!sameTitle">
+          Title value must be new!
+        </div>
+      </form>
+    </ng-template>
+    <p>Type: {{media?.Type}}</p>
+    <p>Year: {{media?.Year | date: 'YYYY'}}</p>
+  </div>
+</div>

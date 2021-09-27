@@ -1,0 +1,11 @@
+.nav-item a{
+  color: #6c6c6c;
+  text-decoration: none;
+}
+.nav-item .active-link {
+  color: #FF4500FF;
+}
+
+.btn {
+  width: 100%;
+}
